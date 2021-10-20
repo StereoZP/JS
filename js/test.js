@@ -33,3 +33,12 @@ console.log(getSalePrice(300), '300');
 console.log(getSalePrice(550), '533.5');
 console.log(getSalePrice(800), '776');
 console.log(getSalePrice(1000), '950');
+
+const userPrice = prompt('Enter your price!');
+const userPriceNumber = +userPrice;
+
+if (isNaN(userPriceNumber)) { // !!!!
+  alert('enter correct data!')
+} else {
+  alert(`Accepted: ${userPriceNumber}, price wwith discount: ${getSalePrice(userPriceNumber)}`);
+}
