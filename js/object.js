@@ -1,16 +1,17 @@
-let x = 0;
-let y = x; // copy
-console.log(x, y)
-x++
-x++
-console.log(x, y)
-// === //
-const test = {
-  test: 1,
-};
-const copyOfTest = test;
-console.log(test, copyOfTest)
+const table = {
+  color: 'white',
+  boxes: {
+    top: 'pencil',
+    bottom: 'pen',
+  },
 
-test.test = 'test';
+  openBox() {
+    return true;
+  },
+  closeBox: () => false,
+}
 
-console.log(test, copyOfTest)
+const t = table.openBox()
+const t1 = table.closeBox()
+
+console.log(t,t1)
