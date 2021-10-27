@@ -1,16 +1,16 @@
-({
-  diagonal: 23, // prop - immutable
-  color: 'white', // prop
-  manufacturer: 'Asus', // prop
-  model: 'VC239', // prop
+let x = 0;
+let y = x; // copy
+console.log(x, y)
+x++
+x++
+console.log(x, y)
+// === //
+const test = {
+  test: 1,
+};
+const copyOfTest = test;
+console.log(test, copyOfTest)
 
-  isOn: true, // state - mutable
+test.test = 'test';
 
-  displayPicture: function () { // method
-    if (this.isOn) {
-      console.log('display is displaying')
-    } else {
-      console.log('display is NOT displaying')
-    }
-  },
-}).displayPicture()
+console.log(test, copyOfTest)
