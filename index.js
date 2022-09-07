@@ -1,20 +1,36 @@
-let modal = document.getElementById("myModal");
-let btn = document.getElementById("myBtn");
-let span = document.getElementsByClassName("close")[0];
+const modal = document.getElementById("myModal");
+const div = document.createElement("div");
+modal.appendChild(div);
+div.classList.add("modal-content");
+const link = document.createElement("a")
+div.appendChild(link);
+link.setAttribute("href", "#close");
+link.setAttribute("title", "#Закрыть");
+link.classList.add("close");
+link.innerText="X";
+const text = document.createElement("p");
+div.appendChild(text);
+text.innerText="Текст";
+const btn = document.getElementById("myBtn");
+const span = document.getElementsByClassName("close")[0];
+const body = document.getElementById("myBody")
 
 function btnClick(){
-    modal.style.display = "block";
+    modal.classList.toggle('display');
 }
 btn.addEventListener("click", btnClick);
 
 function spanClick(){
-    modal.style.display = "none";
+    modal.classList.toggle('display');
 }
 span.addEventListener("click", spanClick);
 
 function windowClick(e){
-    if(e.target == modal){
-    modal.style.display = "none";
+    if(e.target === modal){
+        modal.classList.toggle('display');
     }
 }
-window.addEventListener("click", windowClick);
+body.addEventListener("click", windowClick);
+
+
+
