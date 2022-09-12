@@ -1,11 +1,7 @@
-//const modal = document.getElementById("myModal");
-//const btnOpen = document.getElementById("myBtn");
-const body = document.getElementById("myBody");
-
 class CreateModal{
     constructor(modal, btnOpen, div, btnClose, text) {
         this.modal=document.getElementById("myModal");
-        this.btnOpen=document.getElementById("myBtn");
+        this.btnOpen=document.getElementById("root");
         this.div=document.createElement("div");
         this.btnClose=document.createElement("a");
         this.text=document.createElement("p");
@@ -23,59 +19,49 @@ class CreateModal{
     add(){
         this.div.classList.add("modal-content");
         this.btnClose.classList.add("close");
+        this.modal.classList.add("modal");
     }
     innerText(){
         this.btnClose.innerText="X";
         this.text.innerText="lorem10";
     }
-    element(){
+    getCloseElementId(){
         this.btnClose=document.getElementById("close");
     }
-    btnClick(){
-        this.modal.classList.toggle('display');
-        body.addEventListener("click", this.windowClick);
-    }
-    closeClick(){
-        this.modal.classList.toggle('display');
-    }
-    windowClick(event){
-        if(event.target === this.modal){
-            this.modal.classList.toggle('display');
-            body.removeEventListener("click", this.windowClick);
-        }
-    }
-    listener(){
-        this.btnOpen.addEventListener("click", this.btnClick);
-        this.btnClose.addEventListener("click", this.closeClick);
-    }
-    create(){
+    createElements(){
         this.appendChild();
         this.setAttribute();
         this.add();
+        this.getCloseElementId();
         this.innerText();
-        this.element();
+    }
+    btnClick(){
+        const myElement = document.getElementById('myModal');
+        if (myElement.children.length===0) {
+            this.createElements();
+        }
+        this.modal.addEventListener("click", this.windowClick.bind(this));
+    }
+    closeClick(){
+        this.deleteItems();
+    }
+    windowClick(event){
+        if(event.target === this.modal){
+            this.deleteItems();
+        }
+    }
+    deleteItems() {
+        const deleteElement = document.getElementById("myModal");
+        deleteElement.innerHTML = '';
+        deleteElement.classList.remove("modal")
+    }
+    listener(){
+        this.btnOpen.addEventListener("click", this.btnClick.bind(this));
+        this.btnClose.addEventListener("click", this.closeClick.bind(this));
+    }
+    eventListener(){
         this.listener();
     }
 }
 const modalWindow = new CreateModal("modal", "btnOpen","div", "link", "text");
-modalWindow.create();
-
-
-/*const btnClose = document.getElementById("close");
-btnOpen.addEventListener("click", btnClick);
-btnClose.addEventListener("click", closeClick);
-
-
-function btnClick(){
-    modal.classList.toggle('display');
-    body.addEventListener("click", windowClick);
-}
-function closeClick(){
-    modal.classList.toggle('display');
-}
-function windowClick(e){
-    if(e.target === modal){
-        modal.classList.toggle('display');
-        body.removeEventListener("click", windowClick);
-    }
-}*/
+modalWindow.eventListener();

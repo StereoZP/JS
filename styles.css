@@ -28,7 +28,7 @@ a.buttons:not(:hover) {
     transition: 0.6s;
 }
 .modal {
-    display: none;
+    display: block;
     background: #606061;
     position: fixed;
     top: 0;
@@ -63,8 +63,6 @@ a.buttons:not(:hover) {
     box-shadow: 1px 1px 3px #000;
 }
 .close:hover { background: #00d9ff; }
-.display{
-    display: block;
-}
+
 
 
