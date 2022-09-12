@@ -16,7 +16,7 @@ class CreateModal{
         this.btnClose.setAttribute("title", "#Закрыть");
         this.btnClose.setAttribute("id", "close");
     }
-    add(){
+    addClass(){
         this.div.classList.add("modal-content");
         this.btnClose.classList.add("close");
         this.modal.classList.add("modal");
@@ -31,7 +31,7 @@ class CreateModal{
     createElements(){
         this.appendChild();
         this.setAttribute();
-        this.add();
+        this.addClass();
         this.getCloseElementId();
         this.innerText();
     }
@@ -43,24 +43,18 @@ class CreateModal{
         this.modal.addEventListener("click", this.windowClick.bind(this));
     }
     closeClick(){
-        this.deleteItems();
-    }
-    windowClick(event){
-        if(event.target === this.modal){
-            this.deleteItems();
-        }
-    }
-    deleteItems() {
         const deleteElement = document.getElementById("myModal");
         deleteElement.innerHTML = '';
         deleteElement.classList.remove("modal")
     }
-    listener(){
-        this.btnOpen.addEventListener("click", this.btnClick.bind(this));
-        this.btnClose.addEventListener("click", this.closeClick.bind(this));
+    windowClick(event){
+        if(event.target === this.modal){
+            this.closeClick();
+        }
     }
     eventListener(){
-        this.listener();
+        this.btnOpen.addEventListener("click", this.btnClick.bind(this));
+        this.btnClose.addEventListener("click", this.closeClick.bind(this));
     }
 }
 const modalWindow = new CreateModal("modal", "btnOpen","div", "link", "text");
