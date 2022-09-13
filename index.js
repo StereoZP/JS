@@ -1,7 +1,8 @@
 class CreateModal{
-    constructor(modal, btnOpen, div, btnClose, text) {
-        this.modal=document.getElementById("myModal");
-        this.btnOpen=document.getElementById("root");
+    constructor(modalRootNodeId, modalContent,buttonId) {
+        this.modal=document.getElementById(modalRootNodeId);
+        this.modalContent=modalContent;
+        this.btnOpen=document.getElementById(buttonId);
         this.div=document.createElement("div");
         this.btnClose=document.createElement("a");
         this.text=document.createElement("p");
@@ -16,26 +17,22 @@ class CreateModal{
         this.btnClose.setAttribute("title", "#Закрыть");
         this.btnClose.setAttribute("id", "close");
     }
-    addClass(){
+    addClassList(){
         this.div.classList.add("modal-content");
         this.btnClose.classList.add("close");
         this.modal.classList.add("modal");
     }
     innerText(){
         this.btnClose.innerText="X";
-        this.text.innerText="lorem10";
-    }
-    getCloseElementId(){
-        this.btnClose=document.getElementById("close");
+        this.text.innerText=this.modalContent;
     }
     createElements(){
         this.appendChild();
         this.setAttribute();
-        this.addClass();
-        this.getCloseElementId();
+        this.addClassList();
         this.innerText();
     }
-    btnClick(){
+    openClick(){
         const myElement = document.getElementById('myModal');
         if (myElement.children.length===0) {
             this.createElements();
@@ -53,9 +50,13 @@ class CreateModal{
         }
     }
     eventListener(){
-        this.btnOpen.addEventListener("click", this.btnClick.bind(this));
+        this.btnOpen.addEventListener("click", this.openClick.bind(this));
         this.btnClose.addEventListener("click", this.closeClick.bind(this));
     }
 }
-const modalWindow = new CreateModal("modal", "btnOpen","div", "link", "text");
-modalWindow.eventListener();
+const modalWindow1 = new CreateModal("myModal", "text1","myBtn1");
+const modalWindow2 = new CreateModal("myModal", "text2","myBtn2");
+const modalWindow3 = new CreateModal("myModal", "text3","myBtn3");
+modalWindow1.eventListener();
+modalWindow2.eventListener();
+modalWindow3.eventListener();
